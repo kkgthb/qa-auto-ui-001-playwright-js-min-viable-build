@@ -1,4 +1,4 @@
-const { defineConfig, devices } = requre("@playwright/test");
+const { defineConfig, devices } = require("@playwright/test");
 
 module.exports = defineConfig({
   testDir: "./my-e2e-tests",
