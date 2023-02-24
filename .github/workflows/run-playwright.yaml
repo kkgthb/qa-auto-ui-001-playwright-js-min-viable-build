@@ -1,12 +1,11 @@
 name: Run Playwright
 
 on:
-  # Run this GitHub action every time someone force-pushes to main
-  push:
-    branches:
-      - main
   # Allow this GitHub Action to be run manually from this repository's Actions tab
   workflow_dispatch:
+  # Run this GitHub Action nightly at 3:33 PM
+  schedule:
+    - cron: "33 3 * * *"
 
 jobs:
   e2e_tests_playwright:
