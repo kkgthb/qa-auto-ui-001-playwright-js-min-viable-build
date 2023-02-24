@@ -1,0 +1,37 @@
+name: Run Playwright
+
+on:
+  # Run this GitHub action every time someone force-pushes to main
+  push:
+    branches:
+      - main
+  # Allow this GitHub Action to be run manually from this repository's Actions tab
+  workflow_dispatch:
+
+jobs:
+  e2e_tests_playwright:
+    name: Run end-to-end tests in Playwright
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        # Act as if the e2e-test-codebase subfolder of this repository were its root
+        # (because "npx playwright test" will be looking in what it thinks is the root 
+        # of the codebase for a "playwright.config.js" folder).
+        working-directory: ./e2e-test-codebase
+    steps:
+      # Make a copy of this repository visible to the GitHub Action execution context.
+      - uses: actions/checkout@v3
+      # Install the Node.js JavaScript runtime, and NPM/NPX, 
+      # onto the server that this GitHub Action is spinning up on our behalf.
+      - uses: actions/setup-node@v3
+      # Note:  Normally you would have bothered to make a package-lock.json file, not just a package.json file, 
+      # which would allow you to run "npm ci" here instead of "npm i", for faster install-time, 
+      # but this is a teaching example, so I am prioritizing a microscopically tiny codebase instead.
+      - name: Install Node.js packages
+        run: npm i
+      - name: Install web browsers for Playwright
+        run: npx playwright install --with-deps
+      - name: Run actual Playwright tests
+        run: npx playwright test
+        env:
+          URL_TO_VISIT: 'https://katiekodes.com/'
