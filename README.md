@@ -1,4 +1,4 @@
-# A tiny Playwright (in Node.js) unit test
+# A tiny Playwright _(via Node.js JavaScript)_ user interface _(UI)_ test
 
 _(Accompanies associated blog post on Katie Kodes "[Running UI tests in GitHub Actions](https://katiekodes.com/github-actions-ui-testing/)".)_
 
@@ -18,7 +18,7 @@ _(Accompanies associated blog post on Katie Kodes "[Running UI tests in GitHub A
 
 ---
 
-## Warning
+## Warnings
 
 I've done a few strange things I'd like to draw your attention to.
 
@@ -38,7 +38,12 @@ Instead, I'd expand the contents of my website's codebase's `package.json` to us
 
 The URL `katiekodes.com` whose `<title>` tag I'm checking the contents of gets set in [`/.github/workflows/run-playwright.yaml`](./blob/main/.github/workflows/run-playwright.yaml), not in [`/e2e-test-codebase/my-e2e-tests/my-first-tests.spec.js`](./blob/main/e2e-test-codebase/my-e2e-tests/my-first-tests.spec.js).
 
-That seems potentially nifty for making it easy to if-then-else whether to test against a hardcoded real-world URL, a dynamically computed real-world URL _(e.g. the preview URL returned by the Azure Static Web Apps GitHub Action)_, `localhost`, etc.
+That seems potentially nifty for making it easy to if-then-else whether to test against:
+
+1. a hardcoded real-world URL, 
+1. a dynamically computed real-world URL _(e.g. the preview URL returned by the Azure Static Web Apps GitHub Action)_, 
+1. `localhost`, 
+1. etc.
 
 ### Node packages install slowly
 
