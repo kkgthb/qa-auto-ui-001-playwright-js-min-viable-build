@@ -3,9 +3,10 @@ name: Run Playwright
 on:
   # Allow this GitHub Action to be run manually from this repository's Actions tab
   workflow_dispatch:
-  # Run this GitHub Action nightly at 3:33 PM
-  schedule:
-    - cron: "42 21 * * *"
+  # Run this GitHub Action nightly at 2:43 AM UTC
+  # schedule:
+  #   - cron: "43 2 * * *"
+  # (Note:  commented out so that I don't ACTUALLY end up running GitHub Actions nightly from this tutorial codebase.)
 
 jobs:
   e2e_tests_playwright:
